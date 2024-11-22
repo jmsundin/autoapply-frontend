@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Textarea } from '@/components/ui/textarea'
 
+
 const JobSearchForm = ({ onSubmit }) => {
   const { control, handleSubmit, register } = useForm({
     defaultValues: {
@@ -70,22 +71,7 @@ Salt Lake City, UT`,
       llm_model_type: 'openai',
       llm_model: 'gpt-4o-mini',
     },
-  })
-
-  const onSubmitForm = (data) => {
-    // Process the form data
-    const processedData = {
-      ...data,
-      positions: data.positions.split('\n').map(pos => pos.trim()).filter(Boolean),
-      locations: data.locations.split('\n').map(loc => loc.trim()).filter(Boolean),
-      company_blacklist: data.company_blacklist.split(',').map(company => company.trim()).filter(Boolean),
-      title_blacklist: data.title_blacklist.split(',').map(title => title.trim()).filter(Boolean),
-      location_blacklist: data.location_blacklist.split(',').map(loc => loc.trim()).filter(Boolean),
-    }
-
-    // Call the onSubmit prop with the processed data
-    onSubmit(processedData)
-  }
+  });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 text-foreground">
@@ -208,26 +194,26 @@ software engineer in automation testing`}
           id="locations"
           {...register('locations')}
           defaultValue={`San Diego
-California
-Orange County California
-Los Angeles
-San Jose California
-Austin
-Seattle
-Minneapolis
-Denver
-Portland
-Boston
-New York
-Florida
-Virginia
-San Francisco, CA
-Dallas, TX
-Atlanta, GA
-Washington, D.C.
-Chicago, IL
-Raleigh, NC
-Salt Lake City, UT`}
+            California
+            Orange County California
+            Los Angeles
+            San Jose California
+            Austin
+            Seattle
+            Minneapolis
+            Denver
+            Portland
+            Boston
+            New York
+            Florida
+            Virginia
+            San Francisco, CA
+            Dallas, TX
+            Atlanta, GA
+            Washington, D.C.
+            Chicago, IL
+            Raleigh, NC
+            Salt Lake City, UT`}
           className="h-48 bg-background text-foreground border-input"
         />
       </div>
